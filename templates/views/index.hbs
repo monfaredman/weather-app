@@ -1,14 +1,17 @@
-<!DOCTYPE html>
-
 <html lang="en">
   <head>
-    <link rel="stylesheet" href="/style/style.css">
-            <script  src="/js/default.js"></script>
-
+    <link rel="stylesheet" href="/style/style.css" />
   </head>
   <body>
-    {{>header}}
-    <h1>main</h1>
+        {{> header }}
+        <hr>
+        <form>
+          <h2>wheather 🌝🌤️🌩️🌧️🌨️</h2>
+          <input placeholder="your location ..." type="text">
+          <button>search</button>
+        <p style="color: blue;" id="p-1"></p>
+        <p style="color: red;" id="p-2"></p>
+        </form>
+    <script src="/js/default.js"></script>
   </body>
 </html>
-

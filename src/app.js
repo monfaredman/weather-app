@@ -17,7 +17,7 @@ hbs.registerPartials(partialPath);
 app.use(express.static(publicDirectoryPath));
 
 app.get("", (req, res) => {
-  res.render("index", { title: "helo world" });
+  res.render("index", { title: "Header" });
 });
 app.get("/weather", (req, res) => {
   if (!req.query.address) {
