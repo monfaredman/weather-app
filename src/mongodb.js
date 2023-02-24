@@ -76,5 +76,16 @@ findItem
 //   .catch((error) => {
 //     console.log(error);
 //   });
- 
-// create a callback function with javascript 
+
+// create a callback function with javascript
+
+const callbackFunc = (resolve, reject) => {
+  setTimeout(() => {
+    resolve(1);
+    // reject(2);
+  }, 2000);
+};
+resolve = (num) => {
+  console.log(num);
+};
+console.log(callbackFunc());
