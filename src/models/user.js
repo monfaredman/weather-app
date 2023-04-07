@@ -4,56 +4,61 @@ const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const Task = require("./task");
 
-const userSchema = mongoose.Schema({
-  name: {
-    type: String,
-    required: true,
-    trim: true,
-    default: "",
-  },
-  email: {
-    type: String,
-    unique: true,
-    required: true,
-    trim: true,
-    validate: (val) => {
-      if (!validator.isEmail(val)) {
-        throw new Error("Email is invalid!");
-      }
-    },
-    default: "",
-  },
-  age: {
-    type: Number,
-    required: true,
-    validate: (val) => {
-      if (val < 0) {
-        throw new Error("age is invalid!");
-      }
-    },
-    trim: true,
-    default: 0,
-  },
-  password: {
-    type: String,
-    required: true,
-    validate: (val) => {
-      if (val.toLowerCase().includes("password")) {
-        throw new Error("Password is invalid!");
-      }
-    },
-    trim: true,
-    minLength: 7,
-  },
-  tokens: [
+const userSchema = mongoose.Schema(
+  new mongoose.Schema(
     {
-      token: {
+      name: {
         type: String,
         required: true,
+        trim: true,
+        default: "",
       },
+      email: {
+        type: String,
+        unique: true,
+        required: true,
+        trim: true,
+        validate: (val) => {
+          if (!validator.isEmail(val)) {
+            throw new Error("Email is invalid!");
+          }
+        },
+        default: "",
+      },
+      age: {
+        type: Number,
+        required: true,
+        validate: (val) => {
+          if (val < 0) {
+            throw new Error("age is invalid!");
+          }
+        },
+        trim: true,
+        default: 0,
+      },
+      password: {
+        type: String,
+        required: true,
+        validate: (val) => {
+          if (val.toLowerCase().includes("password")) {
+            throw new Error("Password is invalid!");
+          }
+        },
+        trim: true,
+        minLength: 7,
+      },
+      tokens: [
+        {
+          token: {
+            type: String,
+            required: true,
+          },
+        },
+      ],
     },
-  ],
-});
+    { timestamps: true }
+  )
+);
 
 // Relation between two model & add new field to model
 userSchema.virtual("tasks", {
